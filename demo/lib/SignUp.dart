@@ -17,8 +17,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-
-
   showSnackBar(String message, Duration duration) {
     final snackBar = SnackBar(content: Text(message), duration: duration);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -189,15 +187,15 @@ class _SignUpState extends State<SignUp> {
                           "phone": phoneController.text,
                         };
                         FirebaseFirestore.instance
-                            .collection("userdata").doc(emailController.text)
-                            .set(input); 
+                            .collection("userdata")
+                            .doc(emailController.text)
+                            .set(input);
                       }).catchError((error) {
                         print('failed to add user: $error');
-                        showSnackBar("failed to add user: $error", Duration(milliseconds: 500));
-                      
+                        showSnackBar("failed to add user: $error",
+                            Duration(milliseconds: 500));
                       }).then((value) {
                         print("successsfully registered,$value");
-             
                       }).then((value) {
                         Navigator.push(
                             context,
@@ -307,7 +305,7 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an account?',
+                        'Already have an Account?',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
