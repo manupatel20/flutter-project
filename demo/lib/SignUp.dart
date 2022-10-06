@@ -240,7 +240,7 @@ class _SignUpState extends State<SignUp> {
                           color: Colors.deepPurple[400],
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Sign Up',
                             style: TextStyle(
@@ -258,18 +258,18 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
                         child: GestureDetector(
                           onTap: () => print("Facebook clicked"),
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
-                            decoration: new BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: new Icon(
+                            child: const Icon(
                               FontAwesomeIcons.facebookF,
-                              color: Color(0xFF0084ff),
+                              color:  Color(0xFF0084ff),
                             ),
                           ),
                         ),
@@ -280,11 +280,11 @@ class _SignUpState extends State<SignUp> {
                           onTap: () => print("Instagram clicked"),
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
-                            decoration: new BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: new Icon(
+                            child: const Icon(
                               FontAwesomeIcons.instagram,
                               color: Color(0xFF0084ff),
                             ),
@@ -297,11 +297,11 @@ class _SignUpState extends State<SignUp> {
                           onTap: () => print("Github clicked"),
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
-                            decoration: new BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: new Icon(
+                            child: const Icon(
                               FontAwesomeIcons.github,
                               color: Color(0xFF0084ff),
                             ),
@@ -314,11 +314,11 @@ class _SignUpState extends State<SignUp> {
                           onTap: () => print("Google clicked"),
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
-                            decoration: new BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: new Icon(
+                            child: const Icon(
                               FontAwesomeIcons.google,
                               color: Color(0xFF0084ff),
                             ),
@@ -331,7 +331,7 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Already have an Account?',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -344,7 +344,7 @@ class _SignUpState extends State<SignUp> {
                               MaterialPageRoute(
                                   builder: (context) => LoginPage()));
                         },
-                        child: Text(
+                        child: const Text(
                           ' Sign In',
                           style: TextStyle(
                             color: Colors.blue,
@@ -354,7 +354,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                 ],
               ),
             ),
