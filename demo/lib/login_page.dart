@@ -35,8 +35,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 130),
-            Icon(
+            const SizedBox(height: 130),
+            const Icon(
               Icons.restaurant,
               size: 100,
             ),
@@ -49,18 +49,18 @@ class _LoginPageState extends State<LoginPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Welcomes You !',
               style: TextStyle(
                 fontSize: 15,
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
 
             //email textfield
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 195, 155, 254),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50),
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Container(
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Container(
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
                   {}
@@ -148,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.deepPurple[400],
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Sign In',
                             style: TextStyle(
@@ -165,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Not a member?',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -178,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                               MaterialPageRoute(
                                   builder: (context) => SignUp()));
                         },
-                        child: Text(
+                        child: const Text(
                           ' Register Now',
                           style: TextStyle(
                             color: Colors.blue,
@@ -198,11 +198,11 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () => print("Facebook clicked"),
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
-                            decoration: new BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: new Icon(
+                            child: const Icon(
                               FontAwesomeIcons.facebookF,
                               color: Color(0xFF0084ff),
                             ),
@@ -210,16 +210,16 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
                         child: GestureDetector(
                           onTap: () => print("Instagram clicked"),
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
-                            decoration: new BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: new Icon(
+                            child: const Icon(
                               FontAwesomeIcons.instagram,
                               color: Color(0xFF0084ff),
                             ),
@@ -232,11 +232,11 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () => print("Github clicked"),
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
-                            decoration: new BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: new Icon(
+                            child: const Icon(
                               FontAwesomeIcons.github,
                               color: Color(0xFF0084ff),
                             ),
@@ -249,11 +249,11 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () => print("Google clicked"),
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
-                            decoration: new BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: new Icon(
+                            child: const Icon(
                               FontAwesomeIcons.google,
                               color: Color(0xFF0084ff),
                             ),
