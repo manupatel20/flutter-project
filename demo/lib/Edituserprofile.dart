@@ -44,6 +44,7 @@ class _edituserprofileState extends State<edituserprofile> {
   Future selectFile() async {
     final XFile? pickedImage =
         await picker.pickImage(source: ImageSource.gallery);
+    // ignore: unnecessary_nullable_for_final_variable_declarations
     final File? pickedImageFile = File(pickedImage!.path);
     // final  pickedImageFile = pickedImage!.path;
 
@@ -51,7 +52,7 @@ class _edituserprofileState extends State<edituserprofile> {
       if (pickedImage != null) {
         pickfile = pickedImageFile as File?;
       } else {
-        showSnackBar("No Image Selected", Duration(milliseconds: 500));
+        showSnackBar("No Image Selected", const Duration(milliseconds: 500));
       }
     });
 
