@@ -117,7 +117,7 @@ class _edituserprofileState extends State<edituserprofile> {
                         ),
                       ],
                       shape: BoxShape.circle,
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         image: NetworkImage(
                             ""),
                             fit:BoxFit.cover,
@@ -148,12 +148,12 @@ class _edituserprofileState extends State<edituserprofile> {
                 ],
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             buildTextField("User Name", "Dev Patel", false, name),
             buildTextField("Email", "abc@gmail.com", false, email),
             buildTextField("Password", "******", true, password),
             buildTextField("Phone no.", "10 digits no.", false, phone),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -177,7 +177,7 @@ class _edituserprofileState extends State<edituserprofile> {
                     primary: Colors.white,
                     onSurface: Colors.grey,
                   ),
-                  child: Text(
+                  child: const Text(
                     "SAVE",
                     style: TextStyle(
                       fontSize: 16,
@@ -209,11 +209,11 @@ class _edituserprofileState extends State<edituserprofile> {
                       showpassword = !showpassword;
                     });
                   },
-                  icon: Icon(Icons.remove_red_eye),
+                  icon: const Icon(Icons.remove_red_eye),
                   color: Color.fromARGB(255, 195, 155, 254),
                 )
               : null,
-          contentPadding: EdgeInsets.only(bottom: 3),
+          contentPadding: const EdgeInsets.only(bottom: 3),
           labelText: labelText,
           hintText: placeholder,
           floatingLabelBehavior: FloatingLabelBehavior.always,
