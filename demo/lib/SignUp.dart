@@ -9,6 +9,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+//The state of these widgets can be changed once they are built because they are mutable ,
+// so state of an app can change multiple times with different sets of variables, inputs, data, are called stateful widgets.
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -17,6 +19,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  //final is used to create a constant variable
+  //Defining a snackbar,snackbar widget is used to display the popup message incase of any error
   showSnackBar(String message, Duration duration) {
     final snackBar = SnackBar(content: Text(message), duration: duration);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -25,13 +29,23 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     // final _formKey = GlobalKey<FormState>();
+    //TextEditingController is used to take input from the text-field in TextField widget
     TextEditingController emailController = TextEditingController();
     TextEditingController nameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     TextEditingController phoneController = TextEditingController();
-
+/**
+ * Implements the basic Material Design visual layout structure.
+  This class provides APIs for showing drawers and bottom sheets.
+  By default the scaffold's body is resized to make room for the keyboard. To prevent the resize set resizeToAvoidBottomInset to false.
+   In either case the focused widget will be scrolled into view if it's within a scrollable container.
+ */
     return Scaffold(
       backgroundColor: Colors.white,
+      /**A box in which a single widget can be scrolled.
+
+      This widget is useful when you have a single box that will normally be entirely visible, for example a clock face in a time picker,
+      but you need to make sure it can be scrolled if the container gets too small in one axis (the scroll direction). */
       body: SingleChildScrollView(
           child: Center(
         child: Column(
@@ -46,11 +60,15 @@ class _SignUpState extends State<SignUp> {
             //hello again,
             Text(
               'KITCHEN DIARIES',
+              //here we are using google fonts to incrase the font size and style,
+              //we can also use the default fonts provided by flutter
               style: GoogleFonts.bebasNeue(
                 fontSize: 42,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            //here we are using the text widget to display the text
+            //along eith the Sizedbox widget to give some space between the text and the textfield(two widgets)
             SizedBox(height: 10),
             Text(
               'Welcomes You !',
@@ -60,7 +78,7 @@ class _SignUpState extends State<SignUp> {
             ),
             SizedBox(height: 20),
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 195, 155, 254),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50),
@@ -80,6 +98,15 @@ class _SignUpState extends State<SignUp> {
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      /**
+                       * A material design text field.
+                        Text fields let users enter text into a UI.
+                        The TextField widget implements this component.
+                        To provide a text field that looks like a Material Design text field, use the TextField widget.
+                        To provide a text field that looks like a Cupertino text field, use the CupertinoTextField widget.
+                        To provide a text field that looks like a text field in an Android Material Design app, use the TextFormField widget.
+                       
+                       */
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: TextField(
