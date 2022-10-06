@@ -16,8 +16,9 @@ class navbar extends StatefulWidget {
   State<navbar> createState() => _navbarState();
 }
 
+// ignore: camel_case_types
 class _navbarState extends State<navbar> {
-  final Padding = EdgeInsets.symmetric(horizontal: 20, vertical: 30);
+  final Padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 30);
 
   // String get UserId => widget.UserId;
 
@@ -73,7 +74,9 @@ Widget buildMenuItem({
   required IconData icon,
   VoidCallback? onClicked,
 }) {
+  // ignore: prefer_const_declarations
   final color = Colors.white;
+  // ignore: prefer_const_declarations
   final hoverColor = Colors.white70;
 
   return ListTile(
