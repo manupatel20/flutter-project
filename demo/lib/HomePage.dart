@@ -80,14 +80,14 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           "Kitchen Diaries",
           style: GoogleFonts.balooPaaji2(
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               color: Colors.white,
               fontSize: 20,
               // fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 195, 155, 254),
+        backgroundColor: const Color.fromARGB(255, 195, 155, 254),
         actions: [
           IconButton(
             onPressed: () {
@@ -98,18 +98,18 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            icon: Icon(Icons.food_bank_rounded),
+            icon: const Icon(Icons.food_bank_rounded),
           ),
           IconButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LoginPage(),
+                  builder: (context) => const LoginPage(),
                 ),
               );
             },
-            icon: Icon(Icons.login),
+            icon: const Icon(Icons.login),
           ),
         ],
       ),
@@ -118,10 +118,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 195, 155, 254),
+                  color: const Color.fromARGB(255, 195, 155, 254),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -142,14 +142,14 @@ class _HomePageState extends State<HomePage> {
                                 ));
                           }
                         },
-                        child: Icon(Icons.search)),
-                    SizedBox(
+                        child: const Icon(Icons.search)),
+                    const SizedBox(
                       width: 10,
                     ),
                     Expanded(
                         child: TextField(
                       controller: searchController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Search Receipe",
                         border: InputBorder.none,
                       ),
@@ -161,14 +161,14 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.restaurant_menu,
                       size: 100,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                   ])),
@@ -207,7 +207,7 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.all(8.0),
                               child: ListView.builder(
                                 shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   
@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                                           ));
                                     },
                                     child: Card(
-                                        margin: EdgeInsets.all(20),
+                                        margin: const EdgeInsets.all(20),
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -243,8 +243,11 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                             ),
                                             Positioned(
+                                              right: 0,
+                                              left: 0,
+                                              bottom: 0,
                                               child: Container(
-                                                  padding: EdgeInsets.all(10),
+                                                  padding: const EdgeInsets.all(10),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -254,14 +257,11 @@ class _HomePageState extends State<HomePage> {
                                                   child: Text(
                                                     snapshot.data!.docs[index]
                                                         ['Receipe Name'],
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 20,
                                                     ),
                                                   )),
-                                              right: 0,
-                                              left: 0,
-                                              bottom: 0,
                                             ),
                                             Positioned(
                                               right: 0,
@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(10),
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       255, 255, 255, 255),
                                                 ),
                                                 child: Center(
@@ -280,7 +280,7 @@ class _HomePageState extends State<HomePage> {
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      Icon(
+                                                      const Icon(
                                                           Icons
                                                               .local_fire_department,
                                                           size: 20),
@@ -290,7 +290,7 @@ class _HomePageState extends State<HomePage> {
                                                             .docs[index][
                                                                 'Receipe Calories']
                                                             .toString(),
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           color: Color.fromARGB(
                                                               255, 0, 0, 0),
                                                         ),
@@ -310,10 +310,10 @@ class _HomePageState extends State<HomePage> {
                         }),
                     Container(
                       child: isLoading
-                          ? CircularProgressIndicator()
+                          ? const CircularProgressIndicator()
                           : ListView.builder(
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: receipes.length,
                               itemBuilder: (context, index) {
                                 return InkWell(
@@ -329,7 +329,7 @@ class _HomePageState extends State<HomePage> {
                                         ));
                                   },
                                   child: Card(
-                                    margin: EdgeInsets.all(20),
+                                    margin: const EdgeInsets.all(20),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
@@ -346,8 +346,11 @@ class _HomePageState extends State<HomePage> {
                                               receipes[index].image),
                                         ),
                                         Positioned(
+                                          right: 0,
+                                          left: 0,
+                                          bottom: 0,
                                           child: Container(
-                                              padding: EdgeInsets.all(10),
+                                              padding: const EdgeInsets.all(10),
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
@@ -355,14 +358,11 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               child: Text(
                                                 receipes[index].label,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 20,
                                                 ),
                                               )),
-                                          right: 0,
-                                          left: 0,
-                                          bottom: 0,
                                         ),
                                         Positioned(
                                           right: 0,
@@ -372,7 +372,7 @@ class _HomePageState extends State<HomePage> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                             ),
                                             child: Center(
@@ -380,7 +380,7 @@ class _HomePageState extends State<HomePage> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Icon(
+                                                  const Icon(
                                                       Icons
                                                           .local_fire_department,
                                                       size: 20),
@@ -389,7 +389,7 @@ class _HomePageState extends State<HomePage> {
                                                         .calories
                                                         .toString()
                                                         .substring(0, 4),
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Color.fromARGB(
                                                           255, 0, 0, 0),
                                                     ),
