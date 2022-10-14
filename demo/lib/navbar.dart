@@ -1,7 +1,7 @@
 import 'package:demo/Edituserprofile.dart';
 import 'package:demo/HomePage.dart';
 import 'package:demo/receipes/receipeform.dart';
-import 'package:demo/receipes/showuserreceipes.dart';
+import 'package:demo/receipes/reviews.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -46,19 +46,20 @@ class _navbarState extends State<navbar> {
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => edituserprofile("${widget.UserId}"))),
             ),
-            const SizedBox(height: 20),
-            buildMenuItem(
-              text: 'User Receipes',
-              icon: Icons.dining_sharp,
-              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => showuserreceipes("${widget.UserId}"))),
-            ),
+            
             const SizedBox(height: 20),
             buildMenuItem(
               text: 'Upload New Receipes',
               icon: Icons.food_bank_rounded,
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => receipeform("${widget.UserId}"))),
+            ),
+            const SizedBox(height: 20),
+            buildMenuItem(
+              text: 'Reviews',
+              icon: Icons.reviews,
+              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => reviews("${widget.UserId}"))),
             ),
             const SizedBox(height: 20),
             Divider(color: Colors.white),

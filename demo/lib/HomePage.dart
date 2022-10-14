@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demo/SignUp.dart';
 import 'package:demo/login_page.dart';
+import 'package:demo/userreceipedetail.dart';
 import 'package:demo/navbar.dart';
 import 'package:demo/receipes/receipeform.dart';
 import 'package:demo/receipeview.dart';
@@ -219,8 +220,8 @@ class _HomePageState extends State<HomePage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => receipeview(
-                                                receipes[index].url),
+                                            builder: (context) => details(
+                                                "${widget.userId}"),
                                           ));
                                     },
                                     child: Card(
@@ -287,8 +288,8 @@ class _HomePageState extends State<HomePage> {
                                                       Text(
                                                         snapshot
                                                             .data!
-                                                            .docs[index][
-                                                                'Receipe Calories']
+                                                            .docs[index][ 
+                                                                'Receipe Steps']
                                                             .toString(),
                                                         style: const TextStyle(
                                                           color: Color.fromARGB(

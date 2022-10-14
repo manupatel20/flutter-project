@@ -120,7 +120,7 @@ class _edituserprofileState extends State<edituserprofile> {
                       shape: BoxShape.circle,
                       image: const DecorationImage(
                         image: NetworkImage(
-                            ""),
+                            "img"),
                             fit:BoxFit.cover,
                       ),
                     ),
