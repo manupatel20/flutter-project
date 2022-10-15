@@ -1,6 +1,6 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demo/receipes/receipeform.dart';
+import 'package:demo/receipes/updatereceipe.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -19,8 +19,9 @@ class User {
 
 class details extends StatefulWidget {
   // const details({Key? key}) : super(key: key);
-  String userId;
-  details(this.userId);
+  String userId, ReceipeName;
+  bool delete=false;
+  details(this.userId, this.ReceipeName , this.delete);
 
   @override
   State<details> createState() => _detailsState();
@@ -84,6 +85,7 @@ class _detailsState extends State<details> {
               StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection("userreceipes")
+                      .where('Receipe Name', isEqualTo: "${widget.ReceipeName}")
                       // .doc("${widget.userId}").collection("ReceipeImage")
                       .snapshots(),
                   builder: (context,
@@ -93,8 +95,7 @@ class _detailsState extends State<details> {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    }
-                    else {
+                    } else {
                       return ListView.builder(
                         shrinkWrap: true,
                         itemCount: snapshot.data!.docs.length,
@@ -102,12 +103,11 @@ class _detailsState extends State<details> {
                           DocumentSnapshot documentSnapshot =
                               snapshot.data!.docs[index];
                           return Container(
-                            
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
                                   // Image.network(documentSnapshot["Receipe Image"]),
-                                  Container(       
+                                  Container(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8),
                                     margin: const EdgeInsets.symmetric(
@@ -126,10 +126,8 @@ class _detailsState extends State<details> {
                                       // color: const Color.fromARGB(
                                       //     255, 195, 155, 254),
                                       borderRadius: BorderRadius.circular(5),
-                                                    
                                     ),
                                     child: Row(
-                                      
                                       children: [
                                         Text("Recipe Name: ",
                                             style: GoogleFonts.balooPaaji2(
@@ -169,7 +167,6 @@ class _detailsState extends State<details> {
                                       // color: const Color.fromARGB(
                                       //     255, 195, 155, 254),
                                       borderRadius: BorderRadius.circular(5),
-                                                    
                                     ),
                                     child: Row(
                                       children: [
@@ -181,7 +178,9 @@ class _detailsState extends State<details> {
                                                 // fontWeight: FontWeight.bold,
                                               ),
                                             )),
-                                        Text(documentSnapshot["Receipe Description"],
+                                        Text(
+                                            documentSnapshot[
+                                                "Receipe Description"],
                                             style: GoogleFonts.balooPaaji2(
                                               textStyle: const TextStyle(
                                                 color: Colors.black,
@@ -211,7 +210,6 @@ class _detailsState extends State<details> {
                                       // color: const Color.fromARGB(
                                       //     255, 195, 155, 254),
                                       borderRadius: BorderRadius.circular(5),
-                                                    
                                     ),
                                     child: Row(
                                       children: [
@@ -223,7 +221,9 @@ class _detailsState extends State<details> {
                                                 // fontWeight: FontWeight.bold,
                                               ),
                                             )),
-                                        Text(documentSnapshot["Receipe Ingridents"],
+                                        Text(
+                                            documentSnapshot[
+                                                "Receipe Ingridents"],
                                             style: GoogleFonts.balooPaaji2(
                                               textStyle: const TextStyle(
                                                 color: Colors.black,
@@ -253,7 +253,6 @@ class _detailsState extends State<details> {
                                       // color: const Color.fromARGB(
                                       //     255, 195, 155, 254),
                                       borderRadius: BorderRadius.circular(5),
-                                                    
                                     ),
                                     child: Row(
                                       children: [
@@ -295,7 +294,6 @@ class _detailsState extends State<details> {
                                       // color: const Color.fromARGB(
                                       //     255, 195, 155, 254),
                                       borderRadius: BorderRadius.circular(5),
-                                                    
                                     ),
                                     child: Row(
                                       children: [
@@ -307,13 +305,47 @@ class _detailsState extends State<details> {
                                                 // fontWeight: FontWeight.bold,
                                               ),
                                             )),
-                                        Image.network(documentSnapshot["Receipe Image"],
-                                        height: 200,
-                                        width: 200,
-                                        fit: BoxFit.cover,),
+                                        Image.network(
+                                          documentSnapshot["Receipe Image"],
+                                          height: 200,
+                                          width: 200,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ],
                                     ),
                                   ),
+                                  const SizedBox(height: 30,),
+                                  Column(
+                                    children:<Widget>  [
+                                      if(widget.delete==true)
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => updatereceipe(
+                                                documentSnapshot.id , "${widget.userId}",),
+                                          ));
+                                            
+                                          },
+                                          child: const Text("Update"),
+                                        ),
+
+                                        const SizedBox(height: 15,),
+
+                                      if(widget.delete==true)
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            FirebaseFirestore.instance
+                                                .collection("userreceipes")
+                                                .doc(documentSnapshot.id)
+                                                .delete();
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("Delete"),
+                                        ),
+                                    ],
+                                  )
                                 ],
                               ),
                             ),

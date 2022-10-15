@@ -1,7 +1,7 @@
 import 'package:demo/Edituserprofile.dart';
 import 'package:demo/HomePage.dart';
 import 'package:demo/receipes/receipeform.dart';
-import 'package:demo/receipes/reviews.dart';
+import 'package:demo/receipes/useruploadedreceipes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -56,11 +56,12 @@ class _navbarState extends State<navbar> {
             ),
             const SizedBox(height: 20),
             buildMenuItem(
-              text: 'Reviews',
-              icon: Icons.reviews,
+              text: 'User Uploaded Receipes',
+              icon: Icons.receipt_long_rounded,
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => reviews("${widget.UserId}"))),
+          builder: (context) => useruploadedreceipes("${widget.UserId}"))),
             ),
+            
             const SizedBox(height: 20),
             Divider(color: Colors.white),
           ],

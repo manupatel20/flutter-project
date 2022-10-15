@@ -1,11 +1,7 @@
 import 'dart:io';
-import 'package:http/http.dart';
 
-import '../login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,17 +9,16 @@ import 'package:image_picker/image_picker.dart';
 
 import '../navbar.dart';
 
-class receipeform extends StatefulWidget {
-  String userId;
-  receipeform(this.userId);
-  // const receipeform({Key? key, this.userId}) : super(key: key);
+class updatereceipe extends StatefulWidget {
+  String docid , userId;
+  updatereceipe(this.docid , this.userId);
+  // const updatereceipe({Key? key}) : super(key: key);
 
   @override
-  State<receipeform> createState() => _receipeformState();
+  State<updatereceipe> createState() => _updatereceipeState();
 }
 
-class _receipeformState extends State<receipeform> {
-  // String? get userId => userId;
+class _updatereceipeState extends State<updatereceipe> {
 
   Future uploadFile() async {
     final postid = DateTime.now().millisecondsSinceEpoch.toString();
@@ -34,15 +29,16 @@ class _receipeformState extends State<receipeform> {
     await ref.putFile(pickfile!);
 
     Map<String, dynamic> input = {
-      "Receipe Description": rdesc.text,
-      "Receipe Name": rname.text,
-      "Receipe Ingridents": rind.text,
-      "Receipe Steps": rsteps.text,
+      if(rdesc.text.isNotEmpty) "Receipe Description": rdesc.text,
+      if(rname.text.isNotEmpty) "Receipe Name": rname.text,
+      if(rind.text.isNotEmpty) "Receipe Ingridents": rind.text,
+      if(rsteps.text.isNotEmpty) "Receipe Steps": rsteps.text,
+      
       "Receipe Image": await ref.getDownloadURL(),
       "email": "${widget.userId}",
     };
-    // FirebaseFirestore.instance.collection("userreceipes").doc("${widget.userId}").set(input);
-    FirebaseFirestore.instance.collection("userreceipes").add(input);
+    FirebaseFirestore.instance.collection("userreceipes").doc(widget.docid).update(input );
+    // FirebaseFirestore.instance.collection("userreceipes").add(input);
     print("${widget.userId}");
     showSnackBar("Receipe uploaded successfully", Duration(milliseconds: 500));
   }
@@ -56,6 +52,7 @@ class _receipeformState extends State<receipeform> {
   final picker = ImagePicker();
 
   Future selectFile() async {
+    
     final pickedImage = await picker.pickImage(source: ImageSource.gallery);
     final pickedImageFile = File(pickedImage!.path);
 
@@ -88,7 +85,7 @@ class _receipeformState extends State<receipeform> {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             SizedBox(height: 100),
             Text(
-              "Add Receipe",
+              "Update Receipe",
               style: TextStyle(
                 fontSize: 30,
                 color: Color.fromARGB(255, 195, 155, 254),

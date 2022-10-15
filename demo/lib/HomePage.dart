@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
     TextEditingController searchController = TextEditingController();
 
     return Scaffold(
-      drawer: navbar(userId),
+      drawer: navbar("${widget.userId}"),
       appBar: AppBar(
         title: Text(
           "Kitchen Diaries",
@@ -221,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => details(
-                                                "${widget.userId}"),
+                                                "${widget.userId}" , x["Receipe Name"] , false),
                                           ));
                                     },
                                     child: Card(

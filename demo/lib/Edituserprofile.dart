@@ -91,7 +91,7 @@ class _edituserprofileState extends State<edituserprofile> {
     return Scaffold(
       drawer: navbar("${widget.userId}"),
       appBar: AppBar(
-        title: const Text("Edit User Profile"),
+        title: const Text("Kitchen Diaries"),
         backgroundColor: Color.fromARGB(255, 195, 155, 254),
       ),
       body: Container(
