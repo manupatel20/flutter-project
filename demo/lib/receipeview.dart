@@ -34,11 +34,11 @@ final Completer<WebViewController> controller = Completer<WebViewController>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Food Receipes"),
+    return Scaffold(/*Implements the basic Material Design visual layout structure.This class provides APIs for showing drawers and bottom sheets.*/
+      appBar: AppBar(//App bars are typically used in the Scaffold.appBar property, which places the app bar as a fixed-height widget at the top of the screen.
+        title: Text("Food Recipes"),
       ),
-      body: Container(
+      body: Container(//A convenience widget that combines common painting, positioning, and sizing widgets.
         child: WebView(
           initialUrl: finalurl,
           javascriptMode: JavascriptMode.unrestricted,

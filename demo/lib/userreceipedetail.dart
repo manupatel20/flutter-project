@@ -39,12 +39,12 @@ class _detailsState extends State<details> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(/*Implements the basic Material Design visual layout structure.This class provides APIs for showing drawers and bottom sheets.*/
       drawer: navbar("${widget.userId}"),
       appBar: AppBar(
         title: Text(
           "Kitchen Diaries",
-          style: GoogleFonts.balooPaaji2(
+          style: GoogleFonts.balooPaaji2( // Import google fonts
             textStyle: const TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -56,9 +56,9 @@ class _detailsState extends State<details> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                   builder: (context) => receipeform("${widget.userId}"),
                 ),
               );
@@ -67,9 +67,9 @@ class _detailsState extends State<details> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                   builder: (context) => const LoginPage(),
                 ),
               );
@@ -79,10 +79,14 @@ class _detailsState extends State<details> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: SingleChildScrollView(/*SingleChildScrollView - A box in which a single widget can be scrolled.
+    This widget is useful when you have a single box that will normally be entirely visible,
+     but you need to make sure it can be scrolled if the container gets too small in one axis
+     (the scroll direction).It is also useful if you need to shrink-wrap in both axes
+     (the main scrolling direction as well as the cross axis), as one might see in a dialog or pop-up menu.*/
           child: Column(
             children: [
-              StreamBuilder(
+              StreamBuilder(//Widget that builds itself based on the latest snapshot of interaction with a Stream.
                   stream: FirebaseFirestore.instance
                       .collection("userreceipes")
                       .where('Receipe Name', isEqualTo: "${widget.ReceipeName}")
@@ -93,12 +97,12 @@ class _detailsState extends State<details> {
                           snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(),//A Material Design circular progress indicator, which spins to indicate that the application is busy.
                       );
                     } else {
-                      return ListView.builder(
+                      return ListView.builder(//A scrollable list of widgets arranged linearly.
                         shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),//Scroll physics that does not allow the user to scroll.
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
                           DocumentSnapshot documentSnapshot =
@@ -107,7 +111,7 @@ class _detailsState extends State<details> {
                             child: Column(
                               children:<Widget> [
                                 // Image.network(documentSnapshot["Receipe Image"]),
-                                Container(
+                                Container(//A convenience widget that combines common painting, positioning, and sizing widgets.
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8),
                                   margin: const EdgeInsets.symmetric(
@@ -190,7 +194,7 @@ class _detailsState extends State<details> {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                Container(//A convenience widget that combines common painting, positioning, and sizing widgets.
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8),
                                   margin: const EdgeInsets.symmetric(
@@ -205,9 +209,6 @@ class _detailsState extends State<details> {
                                         offset: const Offset(0, 3),
                                       ),
                                     ],
-                                    // border:Border.all(color: Color.fromARGB(255, 59, 26, 107), width: 2),
-                                    // color: const Color.fromARGB(
-                                    //     255, 195, 155, 254),
                                     borderRadius: BorderRadius.circular(5),
                                   ),
                                   child: Row(
@@ -301,7 +302,7 @@ class _detailsState extends State<details> {
                                               // fontWeight: FontWeight.bold,
                                             ),
                                           )),
-                                      Image.network(
+                                      Image.network(//Creates a widget that displays an ImageStream obtained from the network.
                                         documentSnapshot["Receipe Image"],
                                         height: 200,
                                         width: 200,
@@ -318,9 +319,9 @@ class _detailsState extends State<details> {
                                     if (widget.delete == true)
                                       ElevatedButton(
                                         onPressed: () {
-                                          Navigator.push(
+                                          Navigator.push(////Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                                               context,
-                                              MaterialPageRoute(
+                                              MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                                                 builder: (context) =>
                                                     updatereceipe(
                                                   documentSnapshot.id,

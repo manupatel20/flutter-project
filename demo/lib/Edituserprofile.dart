@@ -13,6 +13,8 @@ import 'package:image_picker/image_picker.dart';
 class edituserprofile extends StatefulWidget {
   // const edituserprofile({Key? key}) : super(key: key);
   String userId;
+
+  /*A controller for an editable text field.Whenever the user modifies a text field with an associated TextEditingController, the text field updates value and the controller notifies its listeners. Listeners can then read the text and selection properties to learn what the user has typed or how the selection has been updated */
   TextEditingController x = TextEditingController();
   edituserprofile(this.userId);
 
@@ -63,7 +65,7 @@ class _edituserprofileState extends State<edituserprofile> {
         .child("post_$postid");
     await ref.putFile(pickfile!);
     print("${widget.userId}");
-    FirebaseFirestore.instance
+    FirebaseFirestore.instance//Represents a Cloud Firestore database and is the entry point for all Cloud Firestore operations.
         .collection("userdata")
         .doc("${widget.userId}")
         .update({"user profile url": await ref.getDownloadURL()});
@@ -82,6 +84,7 @@ class _edituserprofileState extends State<edituserprofile> {
   //   super.initState();
   // }
 
+  /*A controller for an editable text field.Whenever the user modifies a text field with an associated TextEditingController, the text field updates value and the controller notifies its listeners. Listeners can then read the text and selection properties to learn what the user has typed or how the selection has been updated */
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -94,7 +97,7 @@ class _edituserprofileState extends State<edituserprofile> {
         title: const Text("Kitchen Diaries"),
         backgroundColor: Color.fromARGB(255, 195, 155, 254),
       ),
-      body: Container(
+      body: Container(//A convenience widget that combines common painting, positioning, and sizing widgets.
         padding: const EdgeInsets.all(20),
         child: ListView(
           children: [
@@ -128,7 +131,7 @@ class _edituserprofileState extends State<edituserprofile> {
                   Positioned(
                       bottom: 0,
                       right: 0,
-                      child: GestureDetector(
+                      child: GestureDetector(/*By default a GestureDetector with an invisible child ignores touches; this behavior can be controlled with behavior. Detects various gestures and events using the supplied MotionEvents. The OnGestureListener callback will notify users when a particular motion event has occurred.*/
                         onTap: () {
                           selectFile();
                         },
@@ -201,7 +204,7 @@ class _edituserprofileState extends State<edituserprofile> {
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
         controller: x,
-        obscureText: ispassword ? showpassword : false,
+        obscureText: ispassword ? showpassword : false,//Whether to hide the text being edited (e.g., for passwords). When this is set to true, all the characters in the text field are replaced by obscuringCharacter, and the text in the field cannot be copied with copy or cut. If readOnly is also true, then the text cannot be selected.
         decoration: InputDecoration(
           suffixIcon: ispassword
               ? IconButton(

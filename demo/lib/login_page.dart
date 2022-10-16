@@ -21,16 +21,22 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    showSnackBar(String message, Duration duration) {
+    showSnackBar(String message, Duration duration) {//Shows a SnackBar across all registered Scaffolds.A scaffold can show at most one snack bar at a time. If this function is called while another snack bar is already visible, the given snack bar will be added to a queue and displayed after the earlier snack bars have closed.
       final snackBar = SnackBar(content: Text(message), duration: duration);
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);//Manages SnackBars and MaterialBanners for descendant Scaffolds.This class provides APIs for showing snack bars and material banners at the bottom and top of the screen, respectively.
     }
 
+    /*A controller for an editable text field.Whenever the user modifies a text field with an associated TextEditingController, the text field updates value and the controller notifies its listeners. Listeners can then read the text and selection properties to learn what the user has typed or how the selection has been updated */
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    return Scaffold(
+    return Scaffold(/*Implements the basic Material Design visual layout structure.This class provides APIs for showing drawers and bottom sheets.*/
       backgroundColor: Colors.grey[300],
       body: SingleChildScrollView(
+        /*SingleChildScrollView - A box in which a single widget can be scrolled.
+    This widget is useful when you have a single box that will normally be entirely visible,
+     but you need to make sure it can be scrolled if the container gets too small in one axis
+     (the scroll direction).It is also useful if you need to shrink-wrap in both axes
+     (the main scrolling direction as well as the cross axis), as one might see in a dialog or pop-up menu.*/
         child: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 40),
 
             //email textfield
-            Container(
+            Container(//A convenience widget that combines common painting, positioning, and sizing widgets.
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 195, 155, 254),
                 borderRadius: BorderRadius.only(
@@ -127,20 +133,20 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () {
                       {}
                       (FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
+                          .signInWithEmailAndPassword(//Tries to create a new user account with the given email address and password. If successful, it also signs the user in into the app.
                               email: emailController.text,
                               password: passwordController.text)
                           .then((value) {
                         print("successsfully logged-in");
                       }).then((value) {
-                        Navigator.push(
+                        Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                             context,
-                            MaterialPageRoute(
+                            MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                                 builder: (context) =>
                                     HomePage(emailController.text)));
                       }).onError((error, stackTrace) {
                         print("error ${error.toString()}");
-                        showSnackBar("error ${error.toString()}",
+                        showSnackBar("error ${error.toString()}",//Shows a SnackBar across all registered Scaffolds.A scaffold can show at most one snack bar at a time. If this function is called while another snack bar is already visible, the given snack bar will be added to a queue and displayed after the earlier snack bars have closed.
                             Duration(milliseconds: 500));
                       }));
                     },
@@ -175,11 +181,11 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      GestureDetector(
+                      GestureDetector(/*By default a GestureDetector with an invisible child ignores touches; this behavior can be controlled with behavior. Detects various gestures and events using the supplied MotionEvents. The OnGestureListener callback will notify users when a particular motion event has occurred.*/
                         onTap: () {
-                          Navigator.push(
+                          Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                               context,
-                              MaterialPageRoute(
+                              MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                                   builder: (context) => SignUp()));
                         },
                         child: const Text(

@@ -13,8 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return const MaterialApp(/*An application that uses Material Design.
+    A convenience widget that wraps a number of widgets that are commonly required for Material Design applications.*/
+      debugShowCheckedModeBanner: false, //Turns on a little "DEBUG" banner in debug mode to indicate that the app is in debug mode. This is on by default (in debug mode), to turn it off, set the constructor argument to false. In release mode this has no effect.
       home: LoginPage(),
     ); // MaterialApp
   }

@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
 
   getreceipe(String query) async {
     String url =
-        "https://api.edamam.com/search?q=$query&app_id=cac09239&app_key=2a0165b7a3909e97cc9cecf161d66653";
+        "https://api.edamam.com/search?q=$query&app_id=cac09239&app_key=2a0165b7a3909e97cc9cecf161d66653";//Fetching recipes from API
     http.Response response = await http.get(Uri.parse(url));
     Map data = jsonDecode(response.body);
 
@@ -84,11 +84,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    /*A controller for an editable text field.Whenever the user modifies a text field with an associated TextEditingController, the text field updates value and the controller notifies its listeners. Listeners can then read the text and selection properties to learn what the user has typed or how the selection has been updated */
     TextEditingController searchController = TextEditingController();
 
-    return Scaffold(
-      drawer: navbar("${widget.userId}"),
-      appBar: AppBar(
+    return Scaffold(/*Implements the basic Material Design visual layout structure.This class provides APIs for showing drawers and bottom sheets.*/
+      drawer: navbar("${widget.userId}"),//A Material Design panel that slides in horizontally from the edge of a Scaffold to show navigation links in an application.
+      appBar: AppBar(//App bars are typically used in the Scaffold.appBar property, which places the app bar as a fixed-height widget at the top of the screen.
         title: Text(
           "Kitchen Diaries",
           style: GoogleFonts.balooPaaji2(
@@ -103,9 +104,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                   builder: (context) => receipeform(userId),
                 ),
               );
@@ -114,9 +115,9 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                   builder: (context) => const LoginPage(),
                 ),
               );
@@ -126,7 +127,11 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: SingleChildScrollView(/*SingleChildScrollView - A box in which a single widget can be scrolled.
+        This widget is useful when you have a single box that will normally be entirely visible,
+         but you need to make sure it can be scrolled if the container gets too small in one axis
+         (the scroll direction).It is also useful if you need to shrink-wrap in both axes
+         (the main scrolling direction as well as the cross axis), as one might see in a dialog or pop-up menu.*/
           child: Column(
             children: [
               Container(
@@ -139,16 +144,16 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: Row(
                   children: [
-                    GestureDetector(
+                    GestureDetector(/*By default a GestureDetector with an invisible child ignores touches; this behavior can be controlled with behavior. Detects various gestures and events using the supplied MotionEvents. The OnGestureListener callback will notify users when a particular motion event has occurred.*/
                         onTap: () {
                           if ((searchController.text).replaceAll(" ", "") ==
                               "") {
                             print("Blank search");
                           } else {
                             // getreceipe(searchController.text);
-                            Navigator.push(
+                            Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                                 context,
-                                MaterialPageRoute(
+                                MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                                   builder: (context) => search(
                                       searchController.text,
                                       "${widget.userId}"),
@@ -201,6 +206,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ])),
               SingleChildScrollView(
+                /*SingleChildScrollView - A box in which a single widget can be scrolled.
+              This widget is useful when you have a single box that will normally be entirely visible,
+               but you need to make sure it can be scrolled if the container gets too small in one axis
+               (the scroll direction).It is also useful if you need to shrink-wrap in both axes
+               (the main scrolling direction as well as the cross axis), as one might see in a dialog or pop-up menu.*/
                 child: Column(
                   children: [
                     StreamBuilder(
@@ -228,9 +238,9 @@ class _HomePageState extends State<HomePage> {
 
                                   return InkWell(
                                     onTap: () {
-                                      Navigator.push(
+                                      Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                                           context,
-                                          MaterialPageRoute(
+                                          MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                                             builder: (context) => details(
                                                 "${widget.userId}",
                                                 x["Receipe Name"],
@@ -246,7 +256,8 @@ class _HomePageState extends State<HomePage> {
                                         elevation: 0.0,
                                         child: Stack(
                                           children: [
-                                            ClipRRect(
+                                            ClipRRect(/*A widget that clips its child using a rounded rectangle.
+                                     By default, ClipRRect uses its own bounds as the base rectangle for the clip, but the size and location of the clip can be customized using a custom clipper.*/
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               child: Image.network(
@@ -323,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                             );
                           }
                         }),
-                    Container(
+                    Container( //A convenience widget that combines common painting, positioning, and sizing widgets.
                       child: isLoading
                           ? const CircularProgressIndicator()
                           : ListView.builder(
@@ -336,9 +347,9 @@ class _HomePageState extends State<HomePage> {
                                   //   borderRadius: BorderRadius.circular(20),
                                   // ),
                                   onTap: () {
-                                    Navigator.push(
+                                    Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                                         context,
-                                        MaterialPageRoute(
+                                        MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                                           builder: (context) =>
                                               receipeview(receipes[index].url),
                                         ));
@@ -351,7 +362,8 @@ class _HomePageState extends State<HomePage> {
                                     elevation: 0.0,
                                     child: Stack(
                                       children: [
-                                        ClipRRect(
+                                        ClipRRect(/*A widget that clips its child using a rounded rectangle.
+                                     By default, ClipRRect uses its own bounds as the base rectangle for the clip, but the size and location of the clip can be customized using a custom clipper.*/
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           child: Image.network(
