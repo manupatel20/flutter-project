@@ -25,9 +25,9 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
   @override
   Widget build(BuildContext context) {
     // QueryDocumentSnapshot querysnapshot = FirebaseFirestore().collection('userreceipes').get();
-    return Scaffold(
-      drawer: navbar("${widget.userId}"),
-      appBar: AppBar(
+    return Scaffold(/*Implements the basic Material Design visual layout structure.This class provides APIs for showing drawers and bottom sheets.*/
+      drawer: navbar("${widget.userId}"),//A Material Design panel that slides in horizontally from the edge of a Scaffold to show navigation links in an application.
+      appBar: AppBar(//App bars are typically used in the Scaffold.appBar property, which places the app bar as a fixed-height widget at the top of the screen.
         title: Text(
           "Kitchen Diaries",
           style: GoogleFonts.balooPaaji2(
@@ -42,9 +42,9 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                   builder: (context) => receipeform("${widget.userId}"),
                 ),
               );
@@ -53,9 +53,9 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                   builder: (context) => const LoginPage(),
                 ),
               );
@@ -65,7 +65,11 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: SingleChildScrollView(/*SingleChildScrollView - A box in which a single widget can be scrolled.
+    This widget is useful when you have a single box that will normally be entirely visible,
+     but you need to make sure it can be scrolled if the container gets too small in one axis
+     (the scroll direction).It is also useful if you need to shrink-wrap in both axes
+     (the main scrolling direction as well as the cross axis), as one might see in a dialog or pop-up menu.*/
           child: Column(
             children: [
               StreamBuilder(
@@ -84,9 +88,9 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
                                 snapshot.data!.docs[index];
                             return InkWell(
                               onTap: () {
-                                Navigator.push(
+                                Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                                     context,
-                                    MaterialPageRoute(
+                                    MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
                                       builder: (context) => details(
                                           "${widget.userId}",
                                           x['Receipe Name'],
@@ -101,7 +105,8 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
                                   elevation: 0.0,
                                   child: Stack(
                                     children: [
-                                      ClipRRect(
+                                      ClipRRect(/*A widget that clips its child using a rounded rectangle.
+                                     By default, ClipRRect uses its own bounds as the base rectangle for the clip, but the size and location of the clip can be customized using a custom clipper.*/
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.network(
                                           x['Receipe Image'],
@@ -114,7 +119,7 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
                                         right: 0,
                                         left: 0,
                                         bottom: 0,
-                                        child: Container(
+                                        child: Container(//A convenience widget that combines common painting, positioning, and sizing widgets.
                                             padding: const EdgeInsets.all(10),
                                             decoration: BoxDecoration(
                                               borderRadius:
@@ -134,7 +139,7 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
                                         right: 0,
                                         height: 30,
                                         width: 80,
-                                        child: Container(
+                                        child: Container(//A convenience widget that combines common painting, positioning, and sizing widgets.
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),

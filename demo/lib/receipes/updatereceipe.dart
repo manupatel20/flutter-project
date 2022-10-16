@@ -37,13 +37,13 @@ class _updatereceipeState extends State<updatereceipe> {
       "Receipe Image": await ref.getDownloadURL(),
       "email": "${widget.userId}",
     };
-    FirebaseFirestore.instance.collection("userreceipes").doc(widget.docid).update(input );
+    FirebaseFirestore.instance.collection("userreceipes").doc(widget.docid).update(input );//Represents a Cloud Firestore database and is the entry point for all Cloud Firestore operations.
     // FirebaseFirestore.instance.collection("userreceipes").add(input);
     print("${widget.userId}");
     showSnackBar("Receipe uploaded successfully", Duration(milliseconds: 500));
   }
 
-  showSnackBar(String message, Duration duration) {
+  showSnackBar(String message, Duration duration) {//Shows a SnackBar across all registered Scaffolds.A scaffold can show at most one snack bar at a time. If this function is called while another snack bar is already visible, the given snack bar will be added to a queue and displayed after the earlier snack bars have closed.
     final snackBar = SnackBar(content: Text(message), duration: duration);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
@@ -60,12 +60,13 @@ class _updatereceipeState extends State<updatereceipe> {
       if (pickedImage != null) {
         pickfile = pickedImageFile;
       } else {
-        showSnackBar("No Image Selected", Duration(milliseconds: 500));
+        showSnackBar("No Image Selected", Duration(milliseconds: 500));//Shows a SnackBar across all registered Scaffolds.A scaffold can show at most one snack bar at a time. If this function is called while another snack bar is already visible, the given snack bar will be added to a queue and displayed after the earlier snack bars have closed.
       }
     });
     // Navigator.pop(context);
   }
 
+  /*A controller for an editable text field.Whenever the user modifies a text field with an associated TextEditingController, the text field updates value and the controller notifies its listeners. Listeners can then read the text and selection properties to learn what the user has typed or how the selection has been updated */
   TextEditingController rname = TextEditingController();
   TextEditingController rdesc = TextEditingController();
   TextEditingController rind = TextEditingController();
@@ -75,12 +76,16 @@ class _updatereceipeState extends State<updatereceipe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: navbar("${widget.userId}"),
-      appBar: AppBar(
+      drawer: navbar("${widget.userId}"),//A Material Design panel that slides in horizontally from the edge of a Scaffold to show navigation links in an application.
+      appBar: AppBar( //App bars are typically used in the Scaffold.appBar property, which places the app bar as a fixed-height widget at the top of the screen.
         title: Text("Kitchen Diaries"),
         backgroundColor: Color.fromARGB(255, 195, 155, 254),
       ),
-      body: SingleChildScrollView(
+      body: SingleChildScrollView(/*SingleChildScrollView - A box in which a single widget can be scrolled.
+    This widget is useful when you have a single box that will normally be entirely visible,
+     but you need to make sure it can be scrolled if the container gets too small in one axis
+     (the scroll direction).It is also useful if you need to shrink-wrap in both axes
+     (the main scrolling direction as well as the cross axis), as one might see in a dialog or pop-up menu.*/
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             SizedBox(height: 100),
@@ -95,8 +100,8 @@ class _updatereceipeState extends State<updatereceipe> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              width: 300,
+            Container( //A convenience widget that combines common painting, positioning, and sizing widgets.
+            width: 300,
               child: TextField(
                 controller: rname,
                 decoration: InputDecoration(
@@ -108,8 +113,8 @@ class _updatereceipeState extends State<updatereceipe> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              width: 300,
+            Container( //A convenience widget that combines common painting, positioning, and sizing widgets.
+            width: 300,
               child: TextField(
                 controller: rdesc,
                 decoration: InputDecoration(
@@ -121,8 +126,8 @@ class _updatereceipeState extends State<updatereceipe> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              width: 300,
+            Container( //A convenience widget that combines common painting, positioning, and sizing widgets.
+            width: 300,
               child: TextField(
                 controller: rind,
                 decoration: InputDecoration(

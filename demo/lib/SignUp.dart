@@ -21,7 +21,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   //final is used to create a constant variable
   //Defining a snackbar,snackbar widget is used to display the popup message incase of any error
-  showSnackBar(String message, Duration duration) {
+  showSnackBar(String message, Duration duration) {//Shows a SnackBar across all registered Scaffolds.A scaffold can show at most one snack bar at a time. If this function is called while another snack bar is already visible, the given snack bar will be added to a queue and displayed after the earlier snack bars have closed.
     final snackBar = SnackBar(content: Text(message), duration: duration);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     // final _formKey = GlobalKey<FormState>();
-    //TextEditingController is used to take input from the text-field in TextField widget
+    /*A controller for an editable text field.Whenever the user modifies a text field with an associated TextEditingController, the text field updates value and the controller notifies its listeners. Listeners can then read the text and selection properties to learn what the user has typed or how the selection has been updated */
     TextEditingController emailController = TextEditingController();
     TextEditingController nameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -152,7 +152,7 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Container(
+                      child: Container(//A convenience widget that combines common painting, positioning, and sizing widgets.
                         decoration: BoxDecoration(
                           color: Colors.grey[200],
                           border: Border.all(color: Colors.white),
@@ -205,7 +205,7 @@ class _SignUpState extends State<SignUp> {
                       onTap: () {
                         {}
                         (FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
+                            .createUserWithEmailAndPassword(//Tries to create a new user account with the given email address and password. If successful, it also signs the user in into the app.
                                 email: emailController.text,
                                 password: passwordController.text)
                             .then((value) {
@@ -225,10 +225,10 @@ class _SignUpState extends State<SignUp> {
                         }).then((value) {
                           print("successsfully registered,$value");
                         }).then((value) {
-                          Navigator.push(
+                          Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()));
+                              MaterialPageRoute(////MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
+                              builder: (context) => LoginPage()));
                         }).onError((error, stackTrace) {
                           print("error ${error.toString()}");
                         }));
@@ -266,12 +266,13 @@ class _SignUpState extends State<SignUp> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        GestureDetector(
+                        GestureDetector(/*By default a GestureDetector with an invisible child ignores touches; this behavior can be controlled with behavior
+                        Detects various gestures and events using the supplied MotionEvents. The OnGestureListener callback will notify users when a particular motion event has occurred.*/
                           onTap: () {
-                            Navigator.push(
+                            Navigator.push(//Navigator helps us navigate to new route. Navigator.push() method is used to switch to a new route.
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginPage()));
+                                MaterialPageRoute(//MaterialPageRoute - A modal route that replaces the entire screen with a platform-adaptive transition. By default, when a modal route is replaced by another, the previous route remains in memory.
+                                builder: (context) => LoginPage()));
                           },
                           child: const Text(
                             ' Sign In',

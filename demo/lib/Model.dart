@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Model to store recipe details
 class ReceipeModel {
   late String label;
   late String image;
