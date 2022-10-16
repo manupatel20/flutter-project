@@ -14,7 +14,7 @@ import '../userreceipedetail.dart';
 
 class useruploadedreceipes extends StatefulWidget {
   String userId;
-  useruploadedreceipes(this.userId); 
+  useruploadedreceipes(this.userId);
   // const useruploadedreceipes({Key? key}) : super(key: key);
 
   @override
@@ -24,8 +24,7 @@ class useruploadedreceipes extends StatefulWidget {
 class _useruploadedreceipesState extends State<useruploadedreceipes> {
   @override
   Widget build(BuildContext context) {
-
-    // QueryDocumentSnapshot querysnapshot = FirebaseFirestore().collection('userreceipes').get();  
+    // QueryDocumentSnapshot querysnapshot = FirebaseFirestore().collection('userreceipes').get();
     return Scaffold(
       drawer: navbar("${widget.userId}"),
       appBar: AppBar(
@@ -66,8 +65,7 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
         ],
       ),
       body: SafeArea(
-        child: Container(
-            child: SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               StreamBuilder(
@@ -79,107 +77,104 @@ class _useruploadedreceipesState extends State<useruploadedreceipes> {
                     if (snapshot.hasData) {
                       return ListView.builder(
                           shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
                             QueryDocumentSnapshot x =
                                 snapshot.data!.docs[index];
                             return InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => details(
-                                                    "${widget.userId}" , x['Receipe Name'] , true),
-                                              ));
-                                        },
-                                        child: Card(
-                                            margin: const EdgeInsets.all(20),
-                                            shape: RoundedRectangleBorder(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => details(
+                                          "${widget.userId}",
+                                          x['Receipe Name'],
+                                          true),
+                                    ));
+                              },
+                              child: Card(
+                                  margin: const EdgeInsets.all(20),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  elevation: 0.0,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          x['Receipe Image'],
+                                          height: 300,
+                                          width: double.infinity,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        right: 0,
+                                        left: 0,
+                                        bottom: 0,
+                                        child: Container(
+                                            padding: const EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
+                                              color: Colors.black26,
                                             ),
-                                            elevation: 0.0,
-                                            child: Stack(
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: Image.network(
-                                                    x['Receipe Image'],
-                                                    height: 300,
-                                                    width: double.infinity,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                                Positioned(
-                                                  right: 0,
-                                                  left: 0,
-                                                  bottom: 0,
-                                                  child: Container(
-                                                      padding: const EdgeInsets.all(10),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                10),
-                                                        color: Colors.black26,
-                                                      ),
-                                                      child: Text(
-                                                        snapshot.data!.docs[index]
-                                                            ['Receipe Name'],
-                                                        style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 20,
-                                                        ),
-                                                      )),
-                                                ),
-                                                Positioned(
-                                                  right: 0,
-                                                  height: 30,
-                                                  width: 80,
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(10),
-                                                      color: const Color.fromARGB(
-                                                          255, 255, 255, 255),
-                                                    ),
-                                                    child: Center(
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          const Icon(
-                                                              Icons
-                                                                  .local_fire_department,
-                                                              size: 20),
-                                                          Text(
-                                                            snapshot
-                                                                .data!
-                                                                .docs[index][ 
-                                                                    'Receipe Steps']
-                                                                .toString(),
-                                                            style: const TextStyle(
-                                                              color: Color.fromARGB(
-                                                                  255, 0, 0, 0),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
+                                            child: Text(
+                                              snapshot.data!.docs[index]
+                                                  ['Receipe Name'],
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                              ),
                                             )),
-                                      );
+                                      ),
+                                      Positioned(
+                                        right: 0,
+                                        height: 30,
+                                        width: 80,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: const Color.fromARGB(
+                                                255, 255, 255, 255),
+                                          ),
+                                          child: Center(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Icon(
+                                                    Icons.local_fire_department,
+                                                    size: 20),
+                                                Text(
+                                                  snapshot
+                                                      .data!
+                                                      .docs[index]
+                                                          ['Receipe Calories']
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            );
                           });
                     } else {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                   })
             ],
           ),
-            ),
         ),
       ),
     );

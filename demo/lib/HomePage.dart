@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_string_interpolations
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,6 +19,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Model.dart';
 import 'package:clock/clock.dart';
 import 'package:demo/search.dart';
@@ -26,12 +28,20 @@ class HomePage extends StatefulWidget {
   String userId;
   HomePage(this.userId);
   // const HomePage({Key? key , required String UserId}) : super(key: key);
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  // Future getvalidationData() async {
+  //   final SharedPreferences sharedPreferences =
+  //       await SharedPreferences.getInstance();
+  //   var obtainedemail = sharedPreferences.getString('email');
+  //   setState(() {
+  //     widget.finalemail = obtainedemail!;
+  //   });
+  // }
+
   bool isLoading = true;
 
   List<ReceipeModel> receipes = <ReceipeModel>[];
@@ -63,6 +73,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
+    
     super.initState();
     getreceipe("LADOO");
   }
@@ -120,7 +131,8 @@ class _HomePageState extends State<HomePage> {
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 195, 155, 254),
                   borderRadius: BorderRadius.circular(20),
@@ -132,14 +144,14 @@ class _HomePageState extends State<HomePage> {
                           if ((searchController.text).replaceAll(" ", "") ==
                               "") {
                             print("Blank search");
-                            
                           } else {
                             // getreceipe(searchController.text);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      search(searchController.text , "${widget.userId}"),
+                                  builder: (context) => search(
+                                      searchController.text,
+                                      "${widget.userId}"),
                                 ));
                           }
                         },
@@ -211,7 +223,6 @@ class _HomePageState extends State<HomePage> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  
                                   QueryDocumentSnapshot x =
                                       snapshot.data!.docs[index];
 
@@ -221,7 +232,9 @@ class _HomePageState extends State<HomePage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => details(
-                                                "${widget.userId}" , x["Receipe Name"] , false),
+                                                "${widget.userId}",
+                                                x["Receipe Name"],
+                                                false),
                                           ));
                                     },
                                     child: Card(
@@ -248,7 +261,8 @@ class _HomePageState extends State<HomePage> {
                                               left: 0,
                                               bottom: 0,
                                               child: Container(
-                                                  padding: const EdgeInsets.all(10),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -288,8 +302,8 @@ class _HomePageState extends State<HomePage> {
                                                       Text(
                                                         snapshot
                                                             .data!
-                                                            .docs[index][ 
-                                                                'Receipe Steps']
+                                                            .docs[index][
+                                                                'Receipe Calories']
                                                             .toString(),
                                                         style: const TextStyle(
                                                           color: Color.fromARGB(

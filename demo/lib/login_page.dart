@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demo/HomePage.dart';
 import 'package:demo/SignUp.dart';
@@ -7,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,15 +21,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-
-
     showSnackBar(String message, Duration duration) {
-    final snackBar = SnackBar(content: Text(message), duration: duration);
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-    // final _formKey = GlobalKey<FormState>();
+      final snackBar = SnackBar(content: Text(message), duration: duration);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
     TextEditingController emailController = TextEditingController();
-    // TextEditingController nameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.grey[300],
@@ -125,21 +125,25 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                  {}
-                  (FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: emailController.text,
-                          password: passwordController.text)
-                      .then((value) {
-                    print("successsfully logged-in");
-                  }).then((value) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage(emailController.text)));
-                  }).onError((error, stackTrace) {
-                    print("error ${error.toString()}");
-                    showSnackBar("error ${error.toString()}", Duration(milliseconds: 500));
-                  }));
-                },
+                      {}
+                      (FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: emailController.text,
+                              password: passwordController.text)
+                          .then((value) {
+                        print("successsfully logged-in");
+                      }).then((value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    HomePage(emailController.text)));
+                      }).onError((error, stackTrace) {
+                        print("error ${error.toString()}");
+                        showSnackBar("error ${error.toString()}",
+                            Duration(milliseconds: 500));
+                      }));
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: Container(
@@ -189,7 +193,6 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   SizedBox(height: 10),
-                  
                   SizedBox(height: 25),
                 ],
               ),

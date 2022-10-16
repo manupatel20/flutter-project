@@ -31,8 +31,14 @@ class _navbarState extends State<navbar> {
         child: ListView(
           padding: Padding,
           children: <Widget>[
-            const SizedBox(height: 100),
             const SizedBox(height: 20),
+            buildMenuItem(
+              text: "signed in as\n${widget.UserId}",
+              icon: Icons.verified_user_outlined,
+            ),
+            const Divider(color: Colors.white),
+            const SizedBox(height: 60),
+            
             buildMenuItem(
               text: 'Home',
               icon: Icons.home,
@@ -42,7 +48,7 @@ class _navbarState extends State<navbar> {
             const SizedBox(height: 20),
             buildMenuItem(
               text: 'User Profile',
-              icon: Icons.man_rounded,
+              icon: Icons.person,
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => edituserprofile("${widget.UserId}"))),
             ),
