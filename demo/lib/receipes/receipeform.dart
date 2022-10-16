@@ -39,12 +39,13 @@ class _receipeformState extends State<receipeform> {
       "Receipe Ingridents": rind.text,
       "Receipe Steps": rsteps.text,
       "Receipe Image": await ref.getDownloadURL(),
+      "Receipe Calories": rcalories.text,
       "email": "${widget.userId}",
     };
     // FirebaseFirestore.instance.collection("userreceipes").doc("${widget.userId}").set(input);
     FirebaseFirestore.instance.collection("userreceipes").add(input);
     print("${widget.userId}");
-    showSnackBar("Receipe uploaded successfully", Duration(milliseconds: 500));
+    showSnackBar("Receipe uploaded successfully", const Duration(milliseconds: 500));
   }
 
   showSnackBar(String message, Duration duration) {
@@ -63,7 +64,7 @@ class _receipeformState extends State<receipeform> {
       if (pickedImage != null) {
         pickfile = pickedImageFile;
       } else {
-        showSnackBar("No Image Selected", Duration(milliseconds: 500));
+        showSnackBar("No Image Selected", const Duration(milliseconds: 500));
       }
     });
     // Navigator.pop(context);
@@ -74,110 +75,124 @@ class _receipeformState extends State<receipeform> {
   TextEditingController rind = TextEditingController();
   TextEditingController rsteps = TextEditingController();
   TextEditingController rimage = TextEditingController();
+  TextEditingController rcalories = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: navbar("${widget.userId}"),
       appBar: AppBar(
-        title: Text("Kitchen Diaries"),
-        backgroundColor: Color.fromARGB(255, 195, 155, 254),
+        title: const Text("Kitchen Diaries"),
+        backgroundColor: const Color.fromARGB(255, 195, 155, 254),
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            SizedBox(height: 100),
-            Text(
-              "Add Receipe",
+            const SizedBox(height: 100),
+            const Text(
+              "Add Recipe",
               style: TextStyle(
                 fontSize: 30,
                 color: Color.fromARGB(255, 195, 155, 254),
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               width: 300,
               child: TextField(
                 controller: rname,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Receipe Name',
+                  labelText: 'Recipe Name',
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               width: 300,
               child: TextField(
                 controller: rdesc,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Receipe Description',
+                  labelText: 'Recipe Description',
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               width: 300,
               child: TextField(
                 controller: rind,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Receipe Ingredients',
+                  labelText: 'Recipe Ingredients',
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               width: 300,
               child: TextField(
                 controller: rsteps,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Receipe Steps',
+                  labelText: 'Recipe Steps',
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            SizedBox(
+            Container(
+              width: 300,
+              child: TextField(
+                controller: rcalories,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Recipe Calories',
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
               onPressed: selectFile,
-              child: Text("Add Receipe Image"),
+              child: const Text("Add Receipe Image"),
               style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
-                primary: Color.fromARGB(255, 195, 155, 254),
+                primary: const Color.fromARGB(255, 195, 155, 254),
                 onPrimary: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: uploadFile,
-              child: Text("Upload Receipe"),
+              child: const Text("Upload Receipe"),
               style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
-                primary: Color.fromARGB(255, 195, 155, 254),
+                primary: const Color.fromARGB(255, 195, 155, 254),
                 onPrimary: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
